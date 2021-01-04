@@ -6,15 +6,14 @@ angular.module('LunchChecker', [])
 
 LunchCheckerController.$inject = ['$scope'];
 function LunchCheckerController($scope) {
-  $scope.name = "Yaakov";
-  $scope.totalCount=0;
+  $scope.lunchlist = "";
+  $scope.lunchMessage="";
 
   $scope.checkTooMuch = function(){
-    var itemCount = calculateNumberOfItemsInString($scope.lunchList);
-    console.log(itemCount);
-    if (itemCount > 3) {$scope.totalCount = "Too much!"}
-    else if (itemCount < 0) {$scope.totalCount = "Please enter a list of comma separated dishes you usually have for lunch!"}
-    else {$scope.totalCount = "Enjoy!"};
+    //console.log($scope.lunchlist.length)
+    if ($scope.lunchlist.length == 0) {$scope.lunchMessage = "Please enter a list of comma separated dishes you usually have for lunch!"}
+    else if(calculateNumberOfItemsInString($scope.lunchlist) > 3 )  {$scope.lunchMessage = "Too much!"}
+    else {$scope.lunchMessage = "Enjoy!"};
   };
 
   function calculateNumberOfItemsInString(string){
